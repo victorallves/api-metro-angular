@@ -1,0 +1,31 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Cargo</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let funcionario of funcionarios">
+      <tr>
+        <td>{{ funcionario.id }}</td>
+        <td>{{ funcionario.nome }}</td>
+        <td>{{ funcionario.cargo }}</td>
+        <td>
+          <button (click)="toggleDetalhes(funcionario.id)">Detalhes</button>
+        </td>
+      </tr>
+      <tr class="detalhes-row" [id]="'detalhes-' + funcionario.id" style="display: none;">
+        <td colspan="4">
+          <strong>Salário:</strong> {{ funcionario.salario }}<br>
+          <strong>Linha:</strong> {{ funcionario.linha.nome }}<br>
+          <strong>Veículo:</strong> {{ funcionario.veiculo.modelo }} ({{ funcionario.veiculo.numeroIdentificacao }})<br>
+          <button (click)="editarFuncionario(funcionario.id)">Editar</button>
+          <button (click)="excluirFuncionario(funcionario.id)">Excluir</button>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
